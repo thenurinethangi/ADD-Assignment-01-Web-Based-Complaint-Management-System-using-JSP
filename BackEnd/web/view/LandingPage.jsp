@@ -422,7 +422,7 @@
 
         <div id="nav-links">
             <a href="SignUpPage.jsp">Sign Up</a>
-            <a href="SignUpPage.jsp">Sign In</a>
+            <a href="SignInPage.jsp">Sign In</a>
         </div>
     </div>
 </nav>
@@ -738,7 +738,7 @@
                 Whether you're an employee reporting a problem or an admin managing multiple issues across departments, ResolveIT ensures that nothing falls through the cracks.</p>
             <div class="btn-box">
                 <a href="SignUpPage.jsp"><button type="button" class="btn btn-primary">Sign Up</button></a>
-                <a href="SignUpPage.jsp"><button type="button" class="btn btn-primary">Sign In</button></a>
+                <a href="SignInPage.jsp"><button type="button" class="btn btn-primary">Sign In</button></a>
             </div>
         </div>
     </div>
