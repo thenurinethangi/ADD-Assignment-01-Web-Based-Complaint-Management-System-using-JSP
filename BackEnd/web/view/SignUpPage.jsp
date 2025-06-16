@@ -336,7 +336,7 @@
     <div id="content-container">
         <div id="input-fields-side">
             <div class="mb-3" id="title-box">
-                <img src="../assets/image/solutions%20(1).png" alt="web page icon">
+                <img src="${pageContext.request.contextPath}/assets/image/solutions%20(1).png" alt="web page icon">
                 <h5 id="web-app-title">ResolveIT</h5>
             </div>
             <div class="mb-3 sign-up-page-text">
@@ -426,5 +426,16 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="../assets/js/signup-page-script.js"></script>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<c:if test="${not empty errorMsg}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '${errorMsg}'
+        });
+    </script>
+</c:if>
 </body>
 </html>
