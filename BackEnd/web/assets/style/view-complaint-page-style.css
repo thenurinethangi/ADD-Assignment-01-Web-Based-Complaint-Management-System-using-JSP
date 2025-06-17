@@ -1,0 +1,436 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+
+.main-container{
+    /*border: 1px solid crimson;*/
+    max-height: 100vh;
+    overflow-x: hidden;
+    background-color: #FFFFFF;
+}
+
+#navigation-side{
+    background-color: #007BFF;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    /*left: 0;*/
+}
+
+#dashboard-side{
+    background-color: #FFFFFF;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+#web-app-title{
+    color: #FFFFFF;
+    transform: translateY(5px);
+    font-weight: 700;
+    animation: slideInLeft 1.2s ease-out 0.3s both;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px) translateY(5px); opacity: 0; }
+    to { transform: translateX(0) translateY(5px); opacity: 1; }
+}
+
+#title-box{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 5px;
+    transform: translateX(-6px);
+    animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+#title-box img {
+    transition: transform 0.3s ease;
+}
+
+#title-box:hover img {
+    transform: rotate(10deg) scale(1.1);
+}
+
+#dashboard-side{
+    padding: 1.2em 1.5em 1em 1.5em;
+}
+
+#complain-id-box{
+    margin-bottom: 1.7em;
+    padding: 1em;
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+    border-radius: 7px;
+    /*background-color: #003d82;*/
+}
+
+#complain-id-box>h2{
+    /*color: rgba(0, 0, 0, 0.6);*/
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 900;
+    margin-top: 0.7em;
+    margin-bottom: 0.8em;
+}
+
+/* Modern Table Styles */
+#table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    overflow-x: scroll;
+    border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.modern-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+    position: relative;
+}
+
+.modern-table thead::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007BFF, #339CFF, #007BFF);
+}
+
+.modern-table th {
+    padding: 18px 15px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+}
+
+.modern-table th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modern-table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.08);
+}
+
+.modern-table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.03) 0%, rgba(0, 123, 255, 0.08) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.modern-table td {
+    padding: 16px 15px;
+    color: #333;
+    border: none;
+    vertical-align: middle;
+}
+
+.modern-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    min-width: 100px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    text-align: center;
+}
+
+.status-in-progress {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.status-Pending {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.status-open {
+    background: linear-gradient(135deg, #007BFF, #6610f2);
+    color: white;
+}
+
+.status-resolved {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+}
+
+/* Priority Badges */
+.priority-badge {
+    display: inline-block;
+    min-width: 60px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.priority-high {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.priority-medium {
+    background: linear-gradient(135deg, #fd7e14, #e85d04);
+    color: white;
+}
+
+.priority-low {
+    background: linear-gradient(135deg, #28a745, #155724);
+    color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 33px;
+    height: 33px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+}
+
+.btn-view:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modern-table {
+        font-size: 12px;
+    }
+
+    .modern-table th,
+    .modern-table td {
+        padding: 12px 8px;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}
+
+/* Table Animation */
+.modern-table tbody tr {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.modern-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.modern-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.modern-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.modern-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.modern-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ID Column Styling */
+.complaint-id {
+    display: inline-block;
+    min-width: 80px;
+    font-weight: 600;
+    color: #007BFF;
+    font-family: 'Courier New', monospace;
+}
+
+/* Description Column */
+.description-text {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Date Styling */
+.date-text {
+    display: inline-block;
+    min-width: 80px;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.title-text{
+    display: inline-block;
+    min-width: 180px;
+}
+
+.adminNote-text{
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+    color: white;
+    padding: 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,123,255,0.1);
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.sidebar-header h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.sidebar-header p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.nav-menu {
+    padding: 1rem 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-left-color: white;
+    transform: translateX(5px);
+}
+
+.nav-item.active {
+    background: rgba(255,255,255,0.15);
+    border-left-color: white;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    opacity: 0.9;
+    font-size: 16px;
+}
+
+.user-profile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    color: #007BFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+#navigation-side{
+    min-width: 230px;
+}
