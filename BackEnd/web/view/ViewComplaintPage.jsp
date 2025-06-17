@@ -108,7 +108,7 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                     <input type="text" id="id-store-field" name="id" value="${x.id}" style="display: none">
-                                    <button class="action-btn btn-delete" title="Delete" type="submit">
+                                    <button class="action-btn btn-delete" title="Delete" type="submit" ${x.status== 'Resolved' ? 'disabled' : ''}>
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -128,5 +128,37 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/assets/js/view-complaint-page-script.js"></script>
+<script>
+
+    document.querySelectorAll('.action-buttons').forEach(form => {
+        form.addEventListener('submit', function (event) {
+
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'Your item has been deleted.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(() => {
+                        form.submit();
+                    }, 1500);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -39,3 +39,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+//
+// let deleteForm = $('.action-buttons')[0];
+// deleteForm.addEventListener('submit',function (event) {
+//
+//     Swal.fire({
+//         title: 'Are you sure?',
+//         text: "You won't be able to undo this!",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: 'Yes, delete it!',
+//         cancelButtonText: 'No, cancel!',
+//         reverseButtons: true
+//     }).then(async (result) => {
+//         await wait(1 * 60 * 1000);
+//         if (result.isConfirmed) {
+//             Swal.fire(
+//                 'Deleted!',
+//                 'Your item has been deleted.',
+//                 'success'
+//             );
+//         } else if (result.dismiss === Swal.DismissReason.cancel) {
+//             event.preventDefault();
+//         }
+//     });
+// });
+//
+// function wait(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
