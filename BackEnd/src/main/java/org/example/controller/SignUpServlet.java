@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
         try {
             connection = basicDataSource.getConnection();
         } catch (SQLException e) {
-            req.setAttribute("errorMsg", "An Error Occur While Sign Up!, Please Try Again Later.");
+            req.setAttribute("errorMsg", "Something Went Wrong, Please Try Again Later!");
             dispatcher(req,resp);
             throw new RuntimeException(e);
         }
@@ -46,7 +46,7 @@ public class SignUpServlet extends HttpServlet {
         try {
             isExist = signUpDAO.isExist(email, connection);
         } catch (Exception e) {
-            req.setAttribute("errorMsg", "An Error Occur While Sign Up!, Please Try Again Later.");
+            req.setAttribute("errorMsg", "Something Went Wrong, Please Try Again Later!");
             dispatcher(req,resp);
             throw new RuntimeException(e);
         }
@@ -56,10 +56,12 @@ public class SignUpServlet extends HttpServlet {
             try {
                 isSave = signUpDAO.save(user, connection);
             } catch (Exception e) {
-                req.setAttribute("errorMsg", "An Error Occur While Sign Up!, Please Try Again Later.");
+                req.setAttribute("errorMsg", "Something Went Wrong, Please Try Again Later!");
                 dispatcher(req,resp);
                 throw new RuntimeException(e);
             }
+
+
 
             if(isSave){
                 resp.sendRedirect(req.getContextPath() + "/view/SignInPage.jsp");

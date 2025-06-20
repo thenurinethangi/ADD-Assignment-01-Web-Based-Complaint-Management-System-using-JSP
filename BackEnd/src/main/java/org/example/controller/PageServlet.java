@@ -8,7 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.example.model.Complaint;
+import org.example.model.User;
+import org.example.model.UserProfile;
 import org.example.model.dao.ComplaintDAO;
+import org.example.model.dao.UserProfileDAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -91,6 +94,125 @@ public class PageServlet extends HttpServlet {
         }
         else if(page.equals("profile")){
             resp.sendRedirect(req.getContextPath()+ "/view/AddComplaintPage.jsp");
+        }
+        else if(page.equals("dashboardadmin")){
+            resp.sendRedirect(req.getContextPath()+ "/view/AdminDashboard.jsp");
+        }
+        else if(page.equals("complaintsadmin")){
+
+            Connection connection = null;
+            try {
+                BasicDataSource basicDataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+                connection = basicDataSource.getConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            List<Complaint> complaintList = null;
+            try {
+                complaintList = complaintDAO.getAll(connection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            for(Complaint x : complaintList){
+                String updatedDate = x.getUpdatedDate();
+                String adminNote = x.getAdminNote();
+
+                if(updatedDate==null){
+                    x.setUpdatedDate("-");
+                }
+                if(adminNote==null){
+                    x.setAdminNote("-");
+                }
+            }
+
+            HttpSession httpSession = req.getSession();
+            httpSession.setAttribute("complaintsList",complaintList);
+            resp.sendRedirect(req.getContextPath()+ "/view/AdminComplaintPage.jsp");
+        }
+        else if(page.equals("userprofile")){
+
+            BasicDataSource basicDataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+            Connection connection = null;
+            try {
+                connection = basicDataSource.getConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            int id = 0;
+            try {
+                id = new UserProfileDAO().getUserIdByEmail((String) req.getSession().getAttribute("email"),connection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            if(id!=0){
+                UserProfile userProfile1 = null;
+                try {
+                    userProfile1 = new UserProfileDAO().getUserDetailsByUserId(id,connection);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if(userProfile1!=null){
+                    session.setAttribute("firstName",userProfile1.getFirstName());
+                    session.setAttribute("lastName",userProfile1.getLastName());
+                    session.setAttribute("fullName",userProfile1.getFullName());
+                    session.setAttribute("phoneNo",userProfile1.getPhoneNo());
+
+                    if(userProfile1.getImagePath()==null || userProfile1.getImagePath().trim().isEmpty()){
+                        session.setAttribute("image","deafult-user-image-01.png");
+                    }
+                    else{
+                        session.setAttribute("image",userProfile1.getImagePath());
+                    }
+                }
+            }
+
+            resp.sendRedirect(req.getContextPath()+ "/view/UserProfilePage.jsp");
+        }
+        else if(page.equals("userprofileadmin")){
+
+            BasicDataSource basicDataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+            Connection connection = null;
+            try {
+                connection = basicDataSource.getConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            int id = 0;
+            try {
+                id = new UserProfileDAO().getUserIdByEmail((String) req.getSession().getAttribute("email"),connection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            if(id!=0){
+                UserProfile userProfile1 = null;
+                try {
+                    userProfile1 = new UserProfileDAO().getUserDetailsByUserId(id,connection);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if(userProfile1!=null){
+                    session.setAttribute("firstName",userProfile1.getFirstName());
+                    session.setAttribute("lastName",userProfile1.getLastName());
+                    session.setAttribute("fullName",userProfile1.getFullName());
+                    session.setAttribute("phoneNo",userProfile1.getPhoneNo());
+
+                    if(userProfile1.getImagePath()==null || userProfile1.getImagePath().trim().isEmpty()){
+                        session.setAttribute("image","deafult-user-image-01.png");
+                    }
+                    else{
+                        session.setAttribute("image",userProfile1.getImagePath());
+                    }
+                }
+            }
+            resp.sendRedirect(req.getContextPath()+ "/view/UserProfileAdminPage.jsp");
         }
     }
 }
