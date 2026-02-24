@@ -1,11 +1,11 @@
 # Complaint Management System (JSP, Jakarta EE)
 
-## Overview
+## Product Overview
 
-This repository contains a full-stack Complaint Management System (CMS) implemented with JSP and Jakarta EE.  
-The application was originally built as an individual assignment for the IJSE GDSE program, but it is structured and documented to reflect **real-world, production-style engineering practices**.
+Complaint Management System (CMS) is a real-world web application for streamlining how internal teams capture, track, and resolve complaints.  
+It is designed for municipal IT and similar organizations that need to replace email- and spreadsheet-based workflows with a central, structured platform.
 
-The system is designed for a municipal IT division to help internal employees and administrators **submit, track, and resolve complaints** through a synchronous, form-based web interface (no AJAX).
+Employees and administrators work entirely through a synchronous, form-based web interface (no AJAX), using JSP views backed by Jakarta EE servlets and a MySQL database.
 
 ## Key Features
 
@@ -32,7 +32,7 @@ The system is designed for a municipal IT division to help internal employees an
   - Client-side validation using JavaScript for forms
   - Server-side validation and meaningful feedback via JSP
 
-## Architecture & Technologies
+## Architecture & Stack
 
 - **Architecture**
   - Model-View-Controller (MVC)
@@ -52,7 +52,7 @@ The system is designed for a municipal IT division to help internal employees an
   - **Build Tool**: Maven (`BackEnd/pom.xml`)
   - **Application Server**: Apache Tomcat (Jakarta-compatible; e.g., Tomcat 10+)
 
-### Assignment Constraints (Explicitly Respected)
+### Interaction Model & Constraints
 
 - All backend interactions are performed via **HTML forms** using HTTP **GET** and **POST**.
 - **No AJAX / fetch / XMLHttpRequest** or other asynchronous mechanisms are used.
@@ -113,7 +113,7 @@ BackEnd/
         └── web.xml          # Servlet configuration (Jakarta EE web app descriptor)
 ```
 
-## Running the Project Locally
+## Getting Started
 
 ### Prerequisites
 
@@ -123,11 +123,11 @@ BackEnd/
 - Apache Tomcat 10+ (Jakarta EE compatible)
 - IDE such as IntelliJ IDEA or Eclipse (optional but recommended)
 
-### 1. Clone the repository
+### 1. Clone
 
 ```bash
-git clone https://github.com/thenurinethangi/ADD-Assignment-01-Web-Based-Complaint-Management-System-using-JSP.git
-cd ADD-Assignment-01-Web-Based-Complaint-Management-System-using-JSP/BackEnd
+git clone https://github.com/<your-username>/complaint-management-system.git
+cd complaint-management-system/BackEnd
 ```
 
 ### 2. Configure the database
@@ -170,7 +170,7 @@ The landing page (`LandingPage.jsp`) will guide you to sign in or sign up.
 
 ## What This Project Demonstrates (For Recruiters)
 
-This project is intended to showcase **practical, production-aligned skills** rather than just satisfy an academic requirement:
+This project is intended to showcase **practical, production-aligned skills** for building and operating a real-world complaint management platform:
 
 - **Server-side Java web development** with JSP and Jakarta Servlets
 - **Clean MVC separation** with JSP (view), Servlets (controller), and DAOs/POJOs (model)
@@ -182,14 +182,4 @@ This project is intended to showcase **practical, production-aligned skills** ra
 - **Build and deployment pipeline** using Maven and Apache Tomcat
 
 If you are reviewing this repository as a hiring manager or technical interviewer, the `BackEnd/src/main/java/org/example/controller` and `BackEnd/src/main/java/org/example/model/dao` packages, along with the JSP views in `BackEnd/web/view`, provide the best starting point to understand design decisions and coding style.
-
-## Original Assignment Context
-
-- **Title**: Web-Based Complaint Management System using JSP  
-- **Scope**: Individual, research-driven development assignment focused on JSP in a real-world setting  
-- **Objectives**:
-  - Apply JSP in a full-stack web development scenario
-  - Design and implement HTTP-based form processing using GET/POST
-  - Develop a modular MVC codebase
-  - Practice professional engineering practices (version control, documentation, structured code)
 
